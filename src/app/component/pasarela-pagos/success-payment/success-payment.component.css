@@ -1,0 +1,42 @@
+section {
+    position: relative;
+    width: 100vw;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(25, 35, 41, 0.6);
+    z-index: 9999;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    max-width: 50%;
+    height: fit-content;
+    max-height: 50%;
+    padding: 2rem;
+    border-radius: 1.2rem;
+    background: white;
+    overflow: hidden;
+}
+
+.card h3 {
+    color: var(--Green-Accent);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    margin-top: 1.2rem;
+}
+
+.card img {
+    max-width: 10%;
+    min-height: 10%;
+    object-fit: contain;
+}

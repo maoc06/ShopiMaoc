@@ -1,0 +1,46 @@
+<div *ngIf="customer" class="container">
+
+    <form #customerForm="ngForm">
+
+        <div *ngIf="showMsg" class="error-msg ">
+            <p *ngFor="let msg of messages">
+                {{msg}}
+            </p>
+        </div>
+
+        <label>
+            <input type="email" name="email" id="email" #email placeholder=" " [(ngModel)]="customer.email" required>
+            <p>Email</p>
+        </label>
+
+        <div>
+            <label>
+                <input type="text" name="name" id="name" #name placeholder=" " [(ngModel)]="customer.name" required>
+                <p>Nombre</p>
+            </label>
+        </div>
+
+        <div>
+            <label>
+                <input type="text" name="address" id="address" #address placeholder=" " [(ngModel)]="customer.address" required>
+                <p>Dirección</p>
+            </label>
+        </div>
+
+        <div>
+            <label>
+                <input type="text" name="phone" id="phone" #phone placeholder="Phone" [(ngModel)]="customer.phone" required>
+                <p>Teléfono</p>
+            </label>
+        </div>
+
+
+        <!-- <input type="text" name="token" id="token" #token placeholder="Token" [(ngModel)]="customer.token" required> -->
+        <select name="enable" id="enable" #enable [(ngModel)]="customer.enable" required>
+                <option *ngFor="let enable of enables" [value]="enable.id">{{enable.name}}</option>
+            </select>
+        <br/>
+        <button (click)="update()">Actualizar</button>
+        <!-- <button routerLink='/'>Cancel</button> -->
+    </form>
+</div>

@@ -1,0 +1,40 @@
+<main>
+    <h3>{{ titulo }}</h3>
+
+    <input id="search-bar-customers" type="text" #queryInput placeholder="Buscar..." [ngModel]="query" (ngModelChange)="searchByQuery($event)">
+
+    <div *ngIf="showMsg">
+        <p *ngFor="let msg of messages">
+            {{msg}}
+        </p>
+    </div>
+
+    <table>
+        <tr>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Enable</th>
+            <th>Opciones</th>
+        </tr>
+
+        <tr>
+            <td colspan="6" id="add-customer-row">
+                <h3 (click)="goToCustomerSave()">Agregar nuevo cliente</h3>
+            </td>
+        </tr>
+
+        <tr *ngFor="let customer of customers">
+            <td class="clickable" [routerLink]="['/customer-shops', customer.email]">{{ customer.email }}</td>
+            <td class="clickable" [routerLink]="['/customer-shops', customer.email]">{{ customer.name }}</td>
+            <td class="clickable" [routerLink]="['/customer-shops', customer.email]">{{ customer.address }}</td>
+            <td class="clickable" [routerLink]="['/customer-shops', customer.email]">{{ customer.phone }}</td>
+            <td class="clickable" [routerLink]="['/customer-shops', customer.email]">{{ customer.enable }}</td>
+            <td id="options">
+                <a [routerLink]="['/customer-edit', customer.email]">Editar</a>
+                <button (click)="delete(customer.email)">Borrar</button>
+            </td>
+        </tr>
+    </table>
+</main>

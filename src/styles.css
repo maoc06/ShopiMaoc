@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Oswald:wght@300;400;700&display=swap');
+* {
+    font-family: 'Montserrat', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #2465F7;
+    --primary-color-hover: #06329b;
+    --text-color: #333333;
+    --Red-Accent: hsl(0, 100%, 64%);
+    --Dark-Red-Accent: hsl(0, 100%, 44%);
+    --Light-Blue: #2465F7;
+    --Green-Accent: #63CCA2;
+}
+
+body {
+    background-color: #f8f8f8;
+}
+
+h1,
+h2,
+h3,
+h4,
+a {
+    font-family: 'Oswald', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+a:hover {
+    cursor: pointer;
+    color: var(--primary-color);
+}
+
+li {
+    list-style-type: none;
+}
+
+fa-icon {
+    color: var(--text-color);
+}
+
+fa-icon:hover {
+    cursor: pointer;
+    color: var(--primary-color);
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

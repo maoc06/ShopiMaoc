@@ -1,0 +1,30 @@
+<div class="container" *ngIf="paymentMethod">
+    <form #customerForm="ngForm">
+
+        <div *ngIf="showMsg">
+            <p class="error-msg" *ngFor="let msg of messages">
+                {{msg}}
+            </p>
+        </div>
+
+        <label>
+            <input type="text" name="name" id="name" #address placeholder=" " [(ngModel)]="paymentMethod.name">
+            <p>Nombre</p>
+        </label>
+
+        <div>
+            <label>
+                <input type="text" name="image" id="image" #image placeholder=" " [(ngModel)]="paymentMethod.image">
+                <p>Imagen Url</p>
+            </label>
+        </div>
+
+
+
+        <select name="enable" id="enable" #enable [(ngModel)]="paymentMethod.enable">
+            <option *ngFor="let enable of enables" [value]="enable.id">{{enable.name}}</option>
+        </select>
+        <br/>
+        <button (click)="update()">EDITAR</button>
+    </form>
+</div>

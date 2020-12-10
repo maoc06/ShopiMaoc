@@ -1,0 +1,43 @@
+<div>
+    <nav>
+        <div id="logo">
+            <a routerLink=''>Shopi<span>Maoc</span></a>
+        </div>
+        <ul>
+            <li><a routerLink=''>Inicio</a></li>
+            <li><a routerLink='/product-list'>Productos</a></li>
+            <li *ngIf="isSU()"><a routerLink='/customer-list'>Customers</a></li>
+            <li><a routerLink='/payment-method-list'>Payment Methods</a></li>
+            <li><a (click)="logOut()">Cerrar Sesion</a></li>
+            <li *ngIf="!isSU()">
+                <div class="shopping-cart">
+                    <div class="shooping-num" *ngIf="countCart > 0">{{ countCart }}</div>
+                    <fa-icon [icon]="shoppingCartIcon" routerLink='/cart'>
+                    </fa-icon>
+                </div>
+            </li>
+        </ul>
+        <div class="mobile-btn">
+            <a (click)="menuToggle()">
+                <fa-icon [icon]="mobileMenuIcon"></fa-icon>
+            </a>
+            <div id="mobile-cart" *ngIf="!isSU()">
+                <div class="shopping-cart">
+                    <div class="shooping-num" *ngIf="countCart > 0">{{ countCart }}</div>
+                    <fa-icon [icon]="shoppingCartIcon" routerLink='/cart'>
+                    </fa-icon>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="mobile-menu">
+        <ul class="mobile-links">
+            <li><a routerLink=''>Inicio</a></li>
+            <li><a routerLink='/product-list'>Productos</a></li>
+            <li *ngIf="isSU()"><a routerLink='/customer-list'>Customers</a></li>
+            <li><a routerLink='/payment-method-list'>Payment Methods</a></li>
+            <li><a (click)="logOut()">Cerrar Sesion</a></li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="out-container">
+    <div class="container">
+
+        <div class="copy">
+            <h2>Lorem ipsum dolor sit amet consectetur</h2>
+            <p>adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+        </div>
+
+        <div class="right-section">
+
+            <form #loginForm="ngForm">
+
+                <div *ngIf="showMsg">
+                    <p class="error-msg" *ngFor="let msg of messages">
+                        {{msg}}
+                    </p>
+                </div>
+
+                <label>
+                    <input type="email" name="username" id="username" #username="ngModel" placeholder=" " [(ngModel)]="user.username" required>
+                    <p>Username</p>
+                </label>
+
+
+                <div class="password-row">
+                    <label>
+                        <input type="password" name="password" id="password" #password="ngModel" placeholder=" " [(ngModel)]="user.password" required>
+                        <p>Password</p>
+                        <fa-icon [icon]="passwordIcon" (click)="togglePassword()" id="eyeIcon"></fa-icon>
+                    </label>
+                </div>
+
+                <button (click)="signIn()">Ingresar</button>
+
+                <a routerLink='/customer-save'>
+                    Crear cuenta
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+</div>

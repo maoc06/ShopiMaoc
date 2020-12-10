@@ -1,0 +1,42 @@
+<main>
+    <h3>{{ title }}</h3>
+
+    <div *ngIf="!isSU()">
+        <p>Es Shopi<span>Maoc</span> puedes pagar con cualquiera de estos metodos:</p>
+        <div class="payment-methods-grid">
+            <div *ngFor="let paymentMethod of paymentMethods">
+                <img [src]="paymentMethod.image">
+            </div>
+
+        </div>
+    </div>
+
+    <table *ngIf="isSU()">
+        <tr>
+            <th>payId</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Enable</th>
+            <th>Opciones</th>
+        </tr>
+
+        <tr *ngFor="let paymentMethod of paymentMethods">
+            <td>{{ paymentMethod.payId }}</td>
+            <td><img [src]="paymentMethod.image"></td>
+            <td>{{ paymentMethod.name }}</td>
+            <td>{{ paymentMethod.enable }}</td>
+            <td id="options">
+                <div>
+                    <a [routerLink]="['/payment-method-edit', paymentMethod.payId]">Editar</a>
+                    <button (click)="delete(paymentMethod.payId)">Borrar</button>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="5" id="last-row">
+                <h3 (click)="goToPaymentMethodSave()">Agregar nuevo metodo de pago</h3>
+            </td>
+        </tr>
+    </table>
+</main>

@@ -1,0 +1,24 @@
+<div class="container">
+
+    <form #customerForm="ngForm">
+
+        <div *ngIf="showMsg">
+            <p *ngFor="let msg of messages">
+                {{msg}}
+            </p>
+        </div>
+
+        <input type="text" name="proId" id="proId" #proId placeholder="Product ID" [(ngModel)]="product.proId"><br/>
+        <input type="text" name="name" id="name" #address placeholder="Name" [(ngModel)]="product.name"><br/>
+        <input type="text" name="detail" id="detail" #detail placeholder="Detail" [(ngModel)]="product.detail"><br/>
+        <input type="text" name="price" id="price" #price placeholder="Price" [(ngModel)]="product.price"><br/>
+        <input type="text" name="image" id="image" #image placeholder="Image" [(ngModel)]="product.image"><br/>
+        <select name="enable" id="enable" #enable [(ngModel)]="product.enable">
+            <option *ngFor="let enable of enables" [value]="enable.id">{{enable.name}}</option>
+        </select>
+        <br/>
+        <button (click)="save()">GUARDAR</button>
+        <!-- <button routerLink='/product-list'>Cancel</button> -->
+    </form>
+
+</div>

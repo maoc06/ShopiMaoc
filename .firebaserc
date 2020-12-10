@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "cart-maoc": {
+      "hosting": {
+        "cart-front": [
+          "cart-maoc"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "cart-maoc"
+  }
+}

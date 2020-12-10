@@ -1,0 +1,22 @@
+<main>
+
+    <h3>{{ titulo }}</h3>
+    <section *ngFor="let cart of shoppingCarts?.slice().reverse()">
+        <article>
+            <p>Pedido <span>{{ cart?.carId }}</span> realizado el <span>{{ cart?.date | date:'fullDate' }}</span>. Enviado a la dirección <span>{{ cart?.address }}</span></p>
+            <p>Total: <span>{{ cart?.total | currency : "USD" : "symbol-narrow" : '1.0-0' }}</span> - {{ cart?.items }} item(s) - Pagado con <span>{{ paymentMethods[cart.carId]?.name }}</span> (<span>{{ cart?.cardNumber }}</span>)</p>
+        </article>
+        <div class="container-products">
+            <div class="product" *ngFor="let product of products[cart.carId]">
+                <img [src]="product.proImage">
+                <p id="product-name">{{ product.proName }}</p>
+                <p>{{ product.quantity }} item(s)</p>
+            </div>
+        </div>
+    </section>
+
+    <section *ngIf="!shoppingCarts?.length" id="empty-carts">
+        <h4>ESTE USUARIO TODAVIA NO HA REALIZADO COMPRAS</h4>
+    </section>
+
+</main>

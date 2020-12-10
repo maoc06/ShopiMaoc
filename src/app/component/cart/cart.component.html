@@ -1,0 +1,117 @@
+<main *ngIf="customer">
+
+    <section>
+        <a [routerLink]="['/customer-shops', customer.email]">Ver historial de compras</a>
+        <div class="header-items-list">
+            <h4>{{ items?.length }} Item(s)</h4>
+            <button (click)="cleanCart()">Limpiar Carrito</button>
+        </div>
+
+        <div *ngIf="items?.length">
+            <div class="card card-item" *ngFor="let item of items">
+                <img [src]="item.proImage">
+                <div class="info-item">
+                    <p id="product-name">{{ item.proName }}</p>
+                    <p>{{ item.proPrice | currency : "USD" : "symbol-narrow" : "1.0-0" }}</p>
+                </div>
+                <div class="controls-item">
+                    <p id="delete-item" (click)="removeAllProduct(item.proId, item.quantity)">
+                        Eliminar
+                    </p>
+                    <div>
+                        <button (click)="removeProduct(item.proId)">-</button>
+                        <p>{{ item.quantity }}</p>
+                        <button (click)="addProduct(item.proId)">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="!items?.length" id="empty-feedback">
+            <h2>La canasta esta vacía</h2>
+            <p>Parece que aún no has seleccionado<br/>productos para comprar.</p>
+            <button routerLink='/product-list' routerLinkActive="router-link-active">Ver productos</button>
+        </div>
+
+    </section>
+
+    <section>
+
+        <div class="card">
+            <div class="details-div">
+                <h4>Detalles del comprador</h4>
+                <a [routerLink]="['/customer-edit', customer.email]" routerLinkActive="router-link-active">
+                    Editar
+                </a>
+            </div>
+            <div class="details-div">
+                <div>
+                    <h5>Nombre</h5>
+                    <p>{{ customer.name }}</p>
+                </div>
+                <div>
+                    <h5>N° de contacto</h5>
+                    <p>{{ customer.phone }}</p>
+                </div>
+            </div>
+            <h5>Dirección de entrega</h5>
+            <p>{{ customer.address }}</p>
+        </div>
+
+        <div class="card">
+            <div class="details-div">
+                <h4>Total</h4>
+                <h4>{{ total | currency : "USD" : "symbol-narrow" : "1.0-0" }}</h4>
+            </div>
+            <div class="details-div">
+                <p>Precio item(s)</p>
+                <p>{{ precioItems | currency : "USD" : "symbol-narrow" : "1.0-0" }}</p>
+            </div>
+            <div class="details-div">
+                <p>Gastos de envío</p>
+                <p>{{ gastosEnvio | currency : "USD" : "symbol-narrow" : "1.0-0" }}</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h4>Metodo de pago: <span>{{ paymentMethodSelected }}</span></h4>
+            <div class="payment-methods-grid">
+                <div *ngFor="let paymentMethod of paymentMethods">
+                    <img #paymentMethodElement [id]="paymentMethod.name" [src]="paymentMethod.image" (click)="updatePaymentMethod(paymentMethod.payId)">
+                </div>
+            </div>
+            <section *ngIf="paymentMethodSelected != null">
+                <form #cardInfoForm="ngForm">
+
+                    <div>
+                        <label for="cardNumber">
+                            Num. Tarjeta
+                        </label>
+
+                        <input type="text" name="cardNumber" id="cardNumber" #cardNumber="ngModel" [(ngModel)]="creditCard.cardNumber" (keyup)="formatCardNumber($event.target.value)" placeholder="8888-8888-8888-8888" maxlength="19" required>
+                    </div>
+
+                    <div>
+                        <div class="inner-div">
+                            <label for="expiry">Expiración</label>
+                            <input type="text" name="expiry" id="expiry" #expiry="ngModel" [(ngModel)]="creditCard.expiry" (keyup)="formatCardExpiry($event.target.value)" placeholder="MM / YYYY" maxlength="9" required>
+                        </div>
+
+                        <div>
+                            <label for="cvc">CVC/CVV</label>
+                            <input type="text" name="cvc" id="cvc" #cvc="ngModel" [(ngModel)]="creditCard.cvc" placeholder="123" maxlength="3" required>
+                        </div>
+                    </div>
+
+                </form>
+            </section>
+        </div>
+
+        <button id="confirm-btn" (click)="realizarPago()">Confirmar y Pagar</button>
+
+    </section>
+
+</main>
+
+<app-success-payment (click)="closeSuccessPayment()" *ngIf="paymentSuccessful"></app-success-payment>
+<app-failure-payment (click)="closeFailurePayment()" *ngIf="paymentFailure"></app-failure-payment>

@@ -1,0 +1,50 @@
+<div class="container" *ngIf="product">
+    <form #customerForm="ngForm">
+
+        <div *ngIf="showMsg">
+            <p class="error-msg" *ngFor="let msg of messages">
+                {{msg}}
+            </p>
+        </div>
+
+        <label>
+            <input type="text" name="name" id="name" #address placeholder=" " [(ngModel)]="product.name">
+            <p>Nombre</p>
+        </label>
+
+        <div>
+            <label>
+                <input type="text" name="detail" id="detail" #detail placeholder=" " [(ngModel)]="product.detail">
+                <p>Detalle</p>
+            </label>
+        </div>
+
+        <div>
+            <label>
+                <input 
+                    type="number" 
+                    name="price" 
+                    id="price" 
+                    #price 
+                    placeholder=" " 
+                    [(ngModel)]="product.price" 
+                    >
+                <p>Precio</p>
+            </label>
+        </div>
+
+        <div>
+            <label>
+                <input type="text" name="image" id="image" #image placeholder=" " [(ngModel)]="product.image">
+                <p>Imagen Url</p>
+            </label>
+        </div>
+
+
+        <select name="enable" id="enable" #enable [(ngModel)]="product.enable">
+            <option *ngFor="let enable of enables" [value]="enable.id">{{enable.name}}</option>
+        </select>
+        <br/>
+        <button (click)="update()">EDITAR</button>
+    </form>
+</div>

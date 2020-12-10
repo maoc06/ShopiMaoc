@@ -1,0 +1,69 @@
+<div class="out-container">
+    <div class="container">
+
+        <div *ngIf="!showEmailSent">
+            <form #customerForm="ngForm">
+
+                <div *ngIf="showMsg" id="errorMsg">
+                    <p *ngFor="let msg of messages">
+                        {{msg}}
+                    </p>
+                </div>
+
+                <label>
+                    <input type="email" name="email" id="email" #email placeholder=" " [(ngModel)]="customer.email">
+                    <p>Email</p>
+                </label>
+
+                <div>
+                    <label>
+                        <input type="text" name="name" id="name" #name placeholder=" " [(ngModel)]="customer.name">
+                        <p>Nombre</p>
+                    </label>
+                </div>
+
+                <div>
+                    <label>
+                        <input type="text" name="address" id="address" #address placeholder=" " [(ngModel)]="customer.address">
+                        <p>Dirección</p>
+                    </label>
+                </div>
+
+
+                <div>
+                    <label>
+                        <input type="text" name="phone" id="phone" #phone placeholder=" " [(ngModel)]="customer.phone">
+                        <p>Teléfono</p>
+                    </label>
+                </div>
+
+                <div class="password-row">
+                    <label>
+                        <input type="password" name="password" id="password" #password placeholder=" " [(ngModel)]="customer.token">
+                        <p>Password</p>
+                        <fa-icon [icon]="passwordIcon" (click)="togglePassword()" id="eyeIcon"></fa-icon>
+                    </label>
+                </div>
+
+                <select name="enable" id="enable" #enable [(ngModel)]="customer.enable" *ngIf="isLoggedRegister">
+                    <option *ngFor="let enable of enables" [value]="enable.id">{{enable.name}}</option>
+                </select>
+
+                <button (click)="signUp()">Save</button>
+            </form>
+        </div>
+        <div *ngIf="showEmailSent" id="card-sent-email">
+            <section *ngIf="!isLoggedRegister">
+                <h2>Bienvenido a ShopiMaoc</h2>
+                <p>Hemos enviado un correo de confirmación a la dirección:<br/> <b>{{customer.email}}</b> </p>
+                <button (click)="goToLogin()">Ir al Login</button>
+            </section>
+            <section *ngIf="isLoggedRegister">
+                <h2>Se creo el usuario</h2>
+                <p>Hemos enviado un correo de confirmación a la dirección:<br/> <b>{{customer.email}}</b> </p>
+                <button (click)="goToCustomerList()">Volver</button>
+            </section>
+        </div>
+
+    </div>
+</div>

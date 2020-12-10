@@ -1,0 +1,48 @@
+<div class="container">
+    <input id="search-bar-products" type="text" #queryInput placeholder="Buscar..." [ngModel]="query" (ngModelChange)="searchByQuery($event)">
+
+    <h2>{{ title }}</h2>
+    <p id="length-products">Mostrando {{ productsLength }} productos</p>
+
+
+    <div class="conatiner-panels">
+
+        <div class="products-list">
+
+            <a routerLink='/product-save' *ngIf="isSU()" class="card-product" id="card-add-product">
+                <h3>Agregar Producto</h3>
+            </a>
+
+            <div *ngFor="let product of products">
+                <div class="card-product" [ngClass]="{'disable-product': product.enable == 'N'}">
+                    <div class="image-product">
+                        <img [src]="product.image">
+                    </div>
+                    <div class="container-info-product">
+                        <p id="product-name">{{ product.name }}</p>
+                        <div class="product-details">
+                            <div class="info-product">
+                                <p>{{ product.price | currency : "USD" : "symbol-narrow" : '1.0-0' }}</p>
+                            </div>
+                            <div class="shopping-btn" *ngIf="!isSU()">
+                                <button (click)="addShoppingProduct(product)">Agregar</button>
+                            </div>
+                            <div class="shopping-btn" *ngIf="isSU()">
+                                <button [routerLink]="['/product-edit', product.proId]">Editar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <article>
+            <h4>Filtrar por Precio</h4>
+            <input id="slider-price" type="range" #rangeInput step="100000" min="100000" max="10000000" value="5000000" [ngModel]="maxPrice" (ngModelChange)="searchByMaxPrice($event)">
+            <p><span>Precio Max:</span> {{ currMaxPrice | currency : "USD" : "symbol-narrow" : '1.0-0' }}</p>
+        </article>
+
+    </div>
+
+</div>
