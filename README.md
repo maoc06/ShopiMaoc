@@ -27,18 +27,24 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Configure the environment variables file with the following template:
 
-  export const environment = {
-    production: true,
-    apiUrl: 'the url/endpoint backend',
-    firebaseConfig: {
-      apiKey: "YOUR API KEY HERE",
-      authDomain: "YOUR AUTH DOMAIN HERE",
-      databaseURL: "DATABASE URL HERE",
-      projectId: "YOUR PROJECT ID HERE",
-      storageBucket: "URL STORAGE BUCKET HERE",
-      messagingSenderId: "MESSAGING ID HERE",
-      appId: "APP ID HERE"
-    },
-  };
+```ts
+export const environment = {
+  production: true,
+  apiUrl: "the url/endpoint backend",
+  firebaseConfig: {
+    apiKey: "YOUR API KEY HERE",
+    authDomain: "YOUR AUTH DOMAIN HERE",
+    databaseURL: "DATABASE URL HERE",
+    projectId: "YOUR PROJECT ID HERE",
+    storageBucket: "URL STORAGE BUCKET HERE",
+    messagingSenderId: "MESSAGING ID HERE",
+    appId: "APP ID HERE",
+  },
+};
+```
 
 > If you want to use the same backend created for the demo, clone and configure the [back repository](https://github.com/maoc06/ShopiMaoc-Backend)
+
+## Demo
+
+[Live demo](https://cart-maoc.web.app/login)
